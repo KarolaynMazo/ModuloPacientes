@@ -23,6 +23,7 @@ public class Pacientes extends javax.swing.JFrame {
     public Pacientes() {
         initComponents();
         jList1.setModel(modeloLista);
+        setLocationRelativeTo(null);
     }
     
     Lista lista = new Lista();
@@ -34,6 +35,8 @@ public class Pacientes extends javax.swing.JFrame {
      edad.setText("");
      observaciones.setText("");
      genero.setSelectedIndex(0);
+     ingresar.setText("Ingresar");
+     jList1.updateUI();
      }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,8 +62,10 @@ public class Pacientes extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
         genero = new javax.swing.JComboBox<>();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PACIENTES");
 
         ingresar.setText("Ingresar");
         ingresar.addActionListener(new java.awt.event.ActionListener() {
@@ -116,9 +121,14 @@ public class Pacientes extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
-        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Genero", "Femenino", "Masculino", "Otro" }));
+        genero.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Femenino", "Masculino", "Otro" }));
         genero.setName("genero"); // NOI18N
         genero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,38 +136,41 @@ public class Pacientes extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("C.C | Nombre | Edad | Genero");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ingresar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(eliminar)
-                        .addGap(62, 62, 62)
-                        .addComponent(buscar)
-                        .addGap(66, 66, 66))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(ingresar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(eliminar)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(buscar))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5))
+                                .addGap(109, 109, 109)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addGap(109, 109, 109)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cedula, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(edad, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(observaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 27, Short.MAX_VALUE))
+                                    .addComponent(genero, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(nombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(cedula, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(edad, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(observaciones, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addGap(0, 35, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +200,9 @@ public class Pacientes extends javax.swing.JFrame {
                     .addComponent(ingresar)
                     .addComponent(eliminar)
                     .addComponent(buscar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -197,11 +212,23 @@ public class Pacientes extends javax.swing.JFrame {
 
     private void ingresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarActionPerformed
         // TODO add your handling code here:
-        int index =  genero.getSelectedIndex();
-        lista.insertarPrimerNodo(nombre.getText(), Integer.parseInt(cedula.getText()), Integer.parseInt(edad.getText()),index,observaciones.getText());      
-        modeloLista.addElement(lista.getCabeza());
+        Nodo referencia = lista.buscar(Integer.valueOf(cedula.getText()));
+        
+        if(referencia == null){
+            int index =  genero.getSelectedIndex();
+            lista.insertarPrimerNodo(nombre.getText(), 
+                    Integer.parseInt(cedula.getText()), 
+                    Integer.parseInt(edad.getText()),
+                    index,
+                    observaciones.getText());      
+            modeloLista.addElement(lista.getCabeza());
+        }else{
+            referencia.setNombre(nombre.getText());
+            referencia.setEdad(Integer.parseInt(edad.getText()));
+            referencia.setGenero(getGeneroDeIndex(genero.getSelectedIndex()));
+            referencia.setObservaciones(observaciones.getText());
+        }
         limpiar();
-
         
     }//GEN-LAST:event_ingresarActionPerformed
 
@@ -217,15 +244,19 @@ public class Pacientes extends javax.swing.JFrame {
         // TODO add your handling code here:
        String Ced = JOptionPane.showInputDialog("introduzca la cedula");
        Nodo referencia = lista.buscar(Integer.valueOf(Ced));
-        
-        
+       
        JOptionPane.showMessageDialog(null," Nombre: " + referencia.getNombre() + "\n" + 
                                     " Cedula: " + referencia.getCedula()+ "\n" +
                                     " Edad: " + referencia.getEdad() +"\n" +
                                     " Genero: " + referencia.getGenero() + "\n"
                                     + " Observaciones: " + referencia.getObservaciones());
-               
-       limpiar();
+       
+       nombre.setText(referencia.getNombre());
+       cedula.setText(referencia.getCedula()+"");
+       edad.setText(referencia.getEdad()+"");
+       genero.setSelectedIndex(getIndexGenero(referencia));
+       observaciones.setText(referencia.getObservaciones());
+        
     }//GEN-LAST:event_buscarActionPerformed
 
     private void generoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generoActionPerformed
@@ -242,16 +273,56 @@ public class Pacientes extends javax.swing.JFrame {
        
         int index = jList1.getSelectedIndex();
         if(index == -1){
-        JOptionPane.showMessageDialog(null,"Debe seleccionar en la lista");
+            JOptionPane.showMessageDialog(null,"Debe seleccionar en la lista");
         }
         else{
-         lista.EliminarNodo(Integer.parseInt(cedula.getText()));
+         Nodo nodoAEliminar = (Nodo)modeloLista.get(index);
+         lista.EliminarNodo(nodoAEliminar.getCedula());
          modeloLista.remove(index);
+         limpiar();
         }
         
 
     }//GEN-LAST:event_eliminarActionPerformed
 
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        int index = jList1.locationToIndex(evt.getPoint());
+        Nodo referencia = (Nodo)modeloLista.getElementAt(index);
+        
+       nombre.setText(referencia.getNombre());
+       cedula.setText(referencia.getCedula()+"");
+       edad.setText(referencia.getEdad()+"");
+       genero.setSelectedIndex(getIndexGenero(referencia));
+       observaciones.setText(referencia.getObservaciones());
+       
+       ingresar.setText("Actualizar");
+    }//GEN-LAST:event_jList1MouseClicked
+
+    private int getIndexGenero(Nodo referencia){
+        String genero = referencia.getGenero();
+        if(genero == "Femenino"){
+            return 0;
+        }
+        
+        if(genero == "Masculino"){
+            return 1;
+        }
+        
+        return 2;
+    }
+    
+    
+    private String getGeneroDeIndex(int index){
+        if(index == 0){
+            return "Femenino";
+        }
+        
+        if(index == 1){
+            return "Masculino";
+        }
+        
+        return "Otro";
+    }
     /**
      * @param args the command line arguments
      */
@@ -299,6 +370,7 @@ public class Pacientes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nombre;

@@ -26,10 +26,10 @@ public class Lista {
             
        
         Nodo nuevoNodo = new Nodo(cedula, nombre, edad);
-         if (genero == 1) {
+         if (genero == 0) {
             nuevoNodo.setGenero("Femenino");
         } else {
-            if (genero == 2) {
+            if (genero == 1) {
                 nuevoNodo.setGenero("Masculino");
             } else {
                 nuevoNodo.setGenero("Otro");

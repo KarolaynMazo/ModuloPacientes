@@ -22,7 +22,7 @@ public class Nodo {
     }
 
     public String toString() {
-        return cedula + " " + nombre;
+        return cedula + " | " + nombre + " | " + edad + " años" + " | " + genero;
     }
 
     public int getCedula() {
